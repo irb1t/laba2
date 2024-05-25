@@ -6,3 +6,24 @@
 2.	Распознавание и обработку делать  через регулярные выражения;
 3.	В вариантах, где есть параметр (например К), допускается его заменить на любое число;
 4.	Все остальные требования соответствуют варианту задания лабораторной работы №1.
+
+
+
+import re
+
+def number_to_words(number):
+    digits = {
+        '0': 'ноль', '1': 'один', '2': 'два', '3': 'три', '4': 'четыре',
+        '5': 'пять', '6': 'шесть', '7': 'семь', '8': 'восемь', '9': 'девять'
+    }
+    return ' '.join(digits[digit] for digit in str(number))
+
+def process_lexemes(file_path):
+    with open(file_path, 'r') as file:
+        content = file.read()
+        lexemes = re.split(r'\s+', content)
+        for lexeme in lexemes:
+            if lexeme.isdigit():
+                print(number_to_words(lexeme), end=' ')
+            else:
+                print(lexeme, end=' ')
